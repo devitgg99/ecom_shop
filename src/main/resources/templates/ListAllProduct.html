@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Product List</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 py-10">
+
+<div class="container mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center">All Products</h1>
+  <a th:href="@{/api/v1/products/addProduct}" id="openDialogBtn"
+     class="inline-flex items-center bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold
+          px-6 py-3 mb-5 rounded-full shadow-lg hover:from-pink-600 hover:to-pink-700
+          transform hover:scale-105 transition duration-300 ease-in-out">
+    ➕ Insert Product
+  </a>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white shadow-md rounded-lg text-sm md:text-base">
+      <thead class="bg-pink-600 text-white">
+      <tr>
+        <th class="py-3 px-4 text-left">ID</th>
+        <th class="py-3 px-4 text-left">Name</th>
+        <th class="py-3 px-4 text-left">Description</th>
+        <th class="py-3 px-4 text-left">Original Price</th>
+        <th class="py-3 px-4 text-left">Price for Sell</th>
+        <th class="py-3 px-4 text-left">Image</th>
+        <th class="py-3 px-4 text-left">Quantity</th>
+        <th class="py-3 px-4 text-left">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product : ${products}" class="border-b hover:bg-gray-50">
+        <td class="py-2 px-4" th:text="${product.productId}"></td>
+        <td class="py-2 px-4 font-semibold" th:text="${product.name}"></td>
+        <td class="py-2 px-4 max-w-[200px] truncate" th:text="${product.description}"></td>
+        <td class="py-2 px-4 text-pink-600 font-bold" th:text="${product.originalPrice}"></td>
+        <td class="py-2 px-4 text-pink-600 font-bold" th:text="${product.priceForSell}"></td>
+        <td class="py-2 px-4">
+          <img th:src="${product.image}" alt="Product Image" class="h-16 w-16 object-cover rounded-md"/>
+        </td>
+        <td class="py-2 px-4" th:text="${product.quantity}"></td>
+        <td class="py-2 px-4 flex flex-wrap gap-2">
+          <!-- View -->
+          <a th:href="@{'/products/' + ${product.productId}}"
+             class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-md text-xs md:text-sm shadow-sm transition">
+            View
+          </a>
+          <!-- Edit -->
+          <a th:href="@{'/products/edit/' + ${product.productId}}"
+             class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-md text-xs md:text-sm shadow-sm transition">
+            Edit
+          </a>
+          <!-- Delete -->
+          <a th:href="@{deleteProductById/{productId}(productId=${product.productId})}"  class="inline">
+              Delete
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+</html>
