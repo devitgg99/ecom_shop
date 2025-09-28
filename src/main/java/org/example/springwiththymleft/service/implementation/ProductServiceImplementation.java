@@ -4,14 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.example.springwiththymleft.mapper.ProductMapper;
 import org.example.springwiththymleft.model.Request.ProductRequest;
 import org.example.springwiththymleft.model.Response.ProductResponse;
+import org.example.springwiththymleft.model.entity.Brand;
 import org.example.springwiththymleft.model.entity.Category;
 import org.example.springwiththymleft.model.entity.Product;
+import org.example.springwiththymleft.repository.BrandRepository;
 import org.example.springwiththymleft.repository.CategoryRepository;
 import org.example.springwiththymleft.repository.ProductRepository;
 import org.example.springwiththymleft.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +22,7 @@ public class ProductServiceImplementation implements ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final BrandRepository brandRepository;
     private final ProductMapper productMapper;
 
     @Override
@@ -33,7 +37,10 @@ public class ProductServiceImplementation implements ProductService {
         // fetch category from DB
         Category category = categoryRepository.findById(productRequest.getCategoryId())
                 .orElseThrow(() -> new RuntimeException("Category not found"));
+        Brand brand = brandRepository.findById(productRequest.getBrandId())
+                .orElseThrow(() -> new RuntimeException("Category not found"));
         product.setCategory(category);
+        product.setBrand(brand);
         return productMapper.toProductResponse(productRepository.save(product));
     }
 
@@ -57,6 +64,11 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public List<Product> getAllProductForThymeLeaf() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public ProductResponse getProductById(Long productId) {
+        return productMapper.toProductResponse(productRepository.getById(productId));
     }
 
 }

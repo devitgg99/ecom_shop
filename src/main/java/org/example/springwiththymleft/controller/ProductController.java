@@ -67,5 +67,24 @@ public class ProductController {
         productService.deleteProductById(productId);
         return new ModelAndView("redirect:/api/v1/products/listAllProduct");
     }
+    @GetMapping("/editProduct/{productId}")
+    public ModelAndView routeToEditForm(@PathVariable Long productId){
+        ProductResponse productResponse = productService.getProductById(productId);
+        ModelAndView modelAndView = new ModelAndView("EditForm");
+        modelAndView.addObject("ProductResponse", productResponse);
+        return modelAndView;
+    }
 
+    @PostMapping("/editProduct/{productId}")
+    public ModelAndView editProductInThymeleaf(@PathVariable Long productId,@ModelAttribute ProductRequest productRequest){
+        productService.updateProductById(productId, productRequest);
+        return new ModelAndView("redirect:/api/v1/products/listAllProduct");
+    }
+    @GetMapping("/detail/{productId}")
+    public ModelAndView routeToDetail(@PathVariable Long productId){
+        ModelAndView modelAndView = new ModelAndView("ViewDetail");
+        ProductResponse productResponse = productService.getProductById(productId);
+        modelAndView.addObject("product",productResponse);
+        return modelAndView;
+    }
 }

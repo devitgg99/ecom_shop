@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Insert Product Form -->
+<div class="bg-white shadow-md rounded-lg p-6 mb-10">
+    <h2 class="text-xl font-bold mb-4 text-gray-800">➕ Edit Product</h2>
+    <form th:action="@{editProduct/{productId}}" th:method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Name -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" name="name" th:field="${ProductResponse.name}" th:value="${ProductResponse.name}"
+                   class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Description</label>
+            <input type="text" th:field="${ProductResponse.description}" name="description" th:value="${ProductResponse.description}"
+                   class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500">
+        </div>
+
+        <!-- Original Price -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Original Price</label>
+            <input th:field="${ProductResponse.originalPrice}" th:value="${ProductResponse.originalPrice}" type="number" step="0.01" name="originalPrice"
+                   class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+        </div>
+
+        <!-- Price For Sell -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Price for Sell</label>
+            <input th:field="${ProductResponse.priceForSell}" th:value="${ProductResponse.priceForSell}" type="number" step="0.01" name="priceForSell"
+                   class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+        </div>
+
+        <!-- Image URL -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Image URL</label>
+            <input  th:field="${ProductResponse.image}" th:value="${ProductResponse.image}" name="image"
+                    class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500">
+        </div>
+
+        <!-- Quantity -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input type="number" name="quantity" th:field="${ProductResponse.quantity}" th:value="${ProductResponse.quantity}"
+                   class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+        </div>
+
+        <!-- Category -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Category</label>
+            <select name="categoryId" th:field="${ProductResponse.categoryId}" th:value="${ProductResponse.categoryId}"
+                    class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+                <option value="" disabled selected>Select a category</option>
+                <option value="1">Serum</option>
+                <option value="2">Night Cream</option>
+                <option value="3">Soap</option>
+                <option value="4">Mask</option>
+                <option value="5">Sun Screen</option>
+            </select>
+        </div>
+
+        <!-- Brand -->
+        <div>
+            <label class="block text-sm font-medium text-gray-700">Brand</label>
+            <select name="brandId" th:field="${ProductResponse.brandId}" th:value="${ProductResponse.brandId}"
+                    class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+                <option value="" disabled selected>Select a brand</option>
+                <option value="1">Skin7</option>
+                <option value="2">MakEE</option>
+                <option value="3">Skin1004</option>
+                <option value="4">Romand</option>
+                <option value="5">Sheep</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="md:col-span-2 flex justify-end">
+            <button type="submit"
+                    class="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition">
+                Save Product
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

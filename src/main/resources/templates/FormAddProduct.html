@@ -53,19 +53,34 @@
                        class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
             </div>
 
+            <!-- Category -->
             <div>
                 <label class="block text-sm font-medium text-gray-700">Category</label>
                 <select name="categoryId" th:field="${productRequest.categoryId}"
                         class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
                     <option value="" disabled selected>Select a category</option>
                     <option value="1">Serum</option>
-                    <option value="2">Soap</option>
-                    <option value="3">Night Cream</option>
-                    <option value="4">Sun Screen</option>
-                    <option value="5">Lip Stick</option>
-                    <option value="6">Mask</option>
+                    <option value="2">Night Cream</option>
+                    <option value="3">Soap</option>
+                    <option value="4">Mask</option>
+                    <option value="5">Sun Screen</option>
                 </select>
             </div>
+
+            <!-- Brand -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Brand</label>
+                <select name="brandId" th:field="${productRequest.brandId}"
+                        class="w-full border rounded-lg px-3 py-2 mt-1 focus:ring-pink-500 focus:border-pink-500" required>
+                    <option value="" disabled selected>Select a brand</option>
+                    <option value="1">Skin7</option>
+                    <option value="2">MakEE</option>
+                    <option value="3">Skin1004</option>
+                    <option value="4">Romand</option>
+                    <option value="5">Sheep</option>
+                </select>
+            </div>
+
 
 
             <!-- Submit Button -->

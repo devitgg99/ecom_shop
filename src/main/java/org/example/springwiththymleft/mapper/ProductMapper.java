@@ -8,13 +8,15 @@ import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
     @Mapping(target = "category", ignore = true)
     Product toProduct(ProductRequest productRequest);
 
-    @Mapping(source = "category.categoryName", target = "categoryName" )
+    @Mapping(source = "category.categoryId", target = "categoryId" )
+    @Mapping(source = "brand.brandId", target = "brandId" )
     ProductResponse toProductResponse(Product product);
 
     List<ProductResponse> toProductResponse(List<Product> products);

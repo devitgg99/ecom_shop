@@ -15,4 +15,5 @@ public class ProductRequest {
     private String image;
     private Long quantity;
     private Long categoryId;
+    private Long brandId;
 }

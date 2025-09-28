@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+<div class="max-w-3xl w-full bg-white rounded-lg shadow-lg overflow-hidden">
+    <!-- Image -->
+    <div class="w-full h-64 bg-gray-200">
+        <img th:src="${product.image}" alt="Product Image"
+             class="w-full h-full object-cover">
+    </div>
+
+    <!-- Product Info -->
+    <div class="p-6 space-y-4">
+        <h2 class="text-2xl font-bold text-gray-800" th:text="${product.name}">Product Name</h2>
+        <p class="text-gray-600" th:text="${product.description}">
+            This is the product description.
+        </p>
+
+        <!-- Pricing -->
+        <div class="flex items-center space-x-4">
+            <span class="text-pink-600 font-bold text-xl" th:text="'Original Price $' + ${product.originalPrice}">Original Price :$120.00</span>
+            <span class="text-pink-600 font-bold text-xl" th:text="'Sell Price $' + ${product.priceForSell}">Sell Price :$99.00</span>
+        </div>
+
+        <!-- Extra Info -->
+        <div class="grid grid-cols-2 gap-4 mt-4">
+            <div class="p-3 border rounded-lg">
+                <p class="text-sm text-gray-500">Quantity</p>
+                <p class="font-semibold" th:text="${product.quantity}">50</p>
+            </div>
+            <div class="p-3 border rounded-lg">
+                <p class="text-sm text-gray-500">Category ID</p>
+                <p class="font-semibold" th:text="${product.categoryId}">1</p>
+            </div>
+            <div class="p-3 border rounded-lg">
+                <p class="text-sm text-gray-500">Brand ID</p>
+                <p class="font-semibold" th:text="${product.brandId}">2</p>
+            </div>
+            <div class="p-3 border rounded-lg">
+                <p class="text-sm text-gray-500">Product ID</p>
+                <p class="font-semibold" th:text="${product.productId}">101</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

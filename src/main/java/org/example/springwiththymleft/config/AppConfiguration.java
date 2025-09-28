@@ -11,9 +11,9 @@ public class AppConfiguration {
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl("jdbc:postgresql://35.240.149.171:5433/ecom_db");
-        dataSource.setUsername("admin");
-        dataSource.setPassword("Zerogg168");
+        dataSource.setUrl("jdbc:postgresql://aws-1-ap-southeast-1.pooler.supabase.com/postgres");
+        dataSource.setUsername("postgres.vhgybkxnjecfnpvmgfwo");
+        dataSource.setPassword("Zerogg1688$");
         return dataSource;
     }
 }
